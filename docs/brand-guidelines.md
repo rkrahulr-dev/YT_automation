@@ -48,7 +48,7 @@ The characters are invented. They are adults and look like nobody real, and they
 
 ### Rules for every AI image
 
-- Words never come from the image. Titles, handle and numbers are added by `slides/render.js` in Anton and DM Sans. Prompts always say no text.
+- Carousels are made in ChatGPT, text included, from the prompt pack Claude supplies for each post (see `docs/carousel-prompt-pack.md`). Rahul checks every word of slide text against the pack before it is saved. For every other image (profile photo, stories, thumbnails) the prompt says no text, and words are added afterwards.
 - No Rockstar or Take-Two logo, no GTA wordmark, no VI logo, no official artwork, no game UI. Reject any output that has one baked in, even faint (a test with a reference image showed a baked-in logo bleeding through the shade).
 - Scene art is mood, never evidence. Do not use it in news, settings or tips posts as if it were gameplay. In those posts it may only sit behind the cover, and the caption never says "gameplay".
 - Turn on Instagram's AI label for every post that uses AI imagery.
@@ -58,7 +58,7 @@ The characters are invented. They are adults and look like nobody real, and they
 
 ### Using scene art in slides
 
-Add `"image": "path/to/file.png"` to a cover slide in the deck JSON. The renderer fills the slide with the image, darkens the top and bottom with `night` so the headline and handle read, and drops the in-house sun scene. Middle slides stay flat `night`.
+Fallback when ChatGPT is not used: add `"image": "path/to/file.png"` to a cover slide in the deck JSON. The renderer fills the slide with the image, darkens the top and bottom with `night` so the headline and handle read, and drops the in-house sun scene. Middle slides stay flat `night`.
 
 The ready-to-paste prompts are in `docs/ai-image-prompts.md`.
 
