@@ -1,0 +1,6 @@
+{
+  "name": "gta6-automation",
+  "private": true,
+  "scripts": { "render": "node slides/render.js" },
+  "devDependencies": { "playwright": "*" }
+}
