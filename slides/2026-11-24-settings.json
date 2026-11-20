@@ -1,0 +1,19 @@
+{
+  "handle": "@ai_play_hub",
+  "alt": "Cover slide reading 4 GTA 6 settings to change.",
+  "factChecked": false,
+  "sources": [
+    "https://space4games.com/en/games-en/gta-6-best-settings-guide/",
+    "https://allthings.how/best-gta-6-settings-to-change-first-on-ps5/"
+  ],
+  "slides": [
+    {"type": "cover", "title": "4 GTA 6 SETTINGS TO CHANGE", "sub": "Do these before your first mission."},
+    {"type": "text", "head": "WHY BOTHER", "body": "A few defaults get in the way of reading text, spotting turns, or recording clean video."},
+    {"type": "text", "head": "SUBTITLES", "body": "Set subtitles to show outside missions too.", "menu": "Menu: UI"},
+    {"type": "text", "head": "MINIMAP", "body": "Keep it always on while you learn the map.", "menu": "Menu: UI, Navigation"},
+    {"type": "text", "head": "TEXT SIZE", "body": "Small is the default. Go Medium or Large if you sit far from the screen.", "menu": "Menu: UI"},
+    {"type": "text", "head": "MUSIC", "body": "Streaming or recording? Turn on Mute Licensed Music.", "menu": "Menu: Audio"},
+    {"type": "recap", "head": "THE 4 SETTINGS", "items": ["Subtitles outside missions", "Minimap always on", "Text size Medium or Large", "Mute Licensed Music"]},
+    {"type": "cta", "head": "SAVE THIS", "body": "For your first session."}
+  ]
+}

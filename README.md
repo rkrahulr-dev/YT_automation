@@ -15,3 +15,13 @@ The plan, calendars and approval gates live in Notion. This repo holds the files
 - This repository is public. Never commit tokens, API keys, passwords or private streamer messages.
 - Nothing here posts anything. Posting needs your approval on the specific post.
 - Facts in carousel copy must be checked against the game or a named source first.
+
+## Render a carousel
+
+```bash
+npm install
+node slides/render.js slides/2026-11-24-settings.json
+```
+
+Images appear in `out/<file name>/` as 1080x1350 PNGs. Pass `light` as a second argument for the light theme.
+Facts in a carousel file stay unchecked until `factChecked` is set to true after checking the game or a named source.
