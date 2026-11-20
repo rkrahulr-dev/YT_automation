@@ -6,15 +6,61 @@ AI Play Hub is a fan page for GTA 6 clips, settings, tips and news on Instagram,
 
 ## The GTA 6 look
 
-The brand is a Vice City sunset seen from Leonida: a deep violet night, a hot pink to orange sky, a gold sun, turquoise neon and palm silhouettes. It borrows the mood of the game's marketing, never its logos, lettering or art.
+The brand is a Vice City sunset seen from Leonida: a deep violet night, a hot pink to orange sky, a gold sun, turquoise neon and palm silhouettes. It borrows the mood of the game's marketing, never its logos, lettering or art. Two layers carry it: flat graphics (type, stripes, vector sun) and AI scene art (see Scene art).
 
 - Build every cover as one scene: `sky` at the top fading through `pink` to `orange` at the horizon, a `gold` sun with slits cut across its lower half, a `night` ground with a `cyan` perspective grid, and palm silhouettes in `night`.
 - Use the sunset gradient only inside that scene, on covers and the last slide. Slides in between stay flat `night`.
-- Palms are silhouettes drawn in `night`, trunk and five fronds, placed at a scene edge. Never more than two per scene.
-- Neon lines are flat 3px strokes in `pink` or `cyan`. No glow, blur or shadow.
+- Palms are silhouettes drawn in `night`, trunk and five fronds, placed at a scene edge. Never more than two per vector scene.
+- In graphics, neon lines are flat 3px strokes in `pink` or `cyan`. No glow, blur or shadow. Scene art (below) may glow.
 - The sun is a `gold` disc cut by horizontal slits that widen toward the bottom.
 - Headlines are tall poster capitals, left aligned, stacked on two to four lines.
 - The roman numeral VI may appear as plain text in the headline font. Do not recreate the official GTA 6 logo, its lettering or its sunset artwork.
+
+## Scene art (AI-generated images)
+
+Covers, stories, the profile photo and thumbnails can use AI-generated scene art. Seven reference images set the look. They are fan art, so they are kept out of the repo, and only what they teach is written down here. Every AI image follows the five looks below, with one shared palette, one cast and one set of rules.
+
+### The five looks
+
+| Look | Use it for | What defines it |
+| --- | --- | --- |
+| Aerial golden hour | Carousel covers, news posts, YouTube thumbnails | High drone view over a cable-stayed bridge and a coastline, helicopters with searchlights, yachts, a low sun and a dramatic cloud sky. Hot pink and orange sky over turquoise water. |
+| Neon dusk street | Stories, reel title cards, covers | Wet road mirroring the sky, a tall palm framing one side, a vertical neon sign, magenta and violet twilight, a skyline across the water. |
+| Painted ensemble | The "what this page is" pin, Highlights, collab posts | Painterly illustrated cast posed in a group, pastel pink and teal Art Deco hotels behind, fading to clean white at the bottom. |
+| Leonida day street | Tips and settings posts, "first hour" content | Sunny, slightly gritty everyday scene: a two-storey motel, utility poles, a water tower, a character seen from behind. Real blue sky, hard shadows. |
+| Flat Deco sunset | Profile photo, Highlight icons, story backgrounds, any slide that needs calm | Vector style. Purple to pink to orange sky gradient, palm silhouettes in a muted violet, pastel Art Deco buildings, a few gulls. Nearest to the in-house cover scene. |
+
+### Palette for scene art
+
+Scene art leans on the same colors as the graphics, so the two layers match. Sky runs `sky` violet through `pink` to `orange`. Water, neon and shadows lean `cyan`. The sun and highlights are `gold`. Keep the lower third of the frame darker so overlaid text reads. Neon glow, wet-road reflections and soft light are allowed in scene art and nowhere else.
+
+### The cast
+
+The characters are invented. They are adults and look like nobody real, and they are not the game's official characters.
+
+- The Driver: tank top, cargo shorts, watch, seen from behind or over the shoulder. The default hero of a Leonida day street.
+- The Boss: silver hair, linen blazer in pink or cream, open collar, drink in hand.
+- The Local: tattoos, gold chain, black tank top, sunglasses.
+- The Officer: dark vest marked POLICE, ponytail, sunglasses. Only for chase and news art.
+- Wardrobe: palm-print and floral short-sleeve shirts, linen, denim, bandanas, tinted sunglasses, gold chains. Keep outfits everyday, not swimwear, so posts stay brand safe and reachable.
+- Framing: back view, over the shoulder, or sitting on a car, looking at the skyline. Faces stay small. Never a close-up portrait.
+- Cars and aircraft: a pink retro sports car, a red supercar, a yellow cab, news helicopters, white yachts. No real brand badges and no readable plates.
+
+### Rules for every AI image
+
+- Words never come from the image. Titles, handle and numbers are added by `slides/render.js` in Anton and DM Sans. Prompts always say no text.
+- No Rockstar or Take-Two logo, no GTA wordmark, no VI logo, no official artwork, no game UI. Reject any output that has one baked in, even faint (a test with a reference image showed a baked-in logo bleeding through the shade).
+- Scene art is mood, never evidence. Do not use it in news, settings or tips posts as if it were gameplay. In those posts it may only sit behind the cover, and the caption never says "gameplay".
+- Turn on Instagram's AI label for every post that uses AI imagery.
+- No real people, celebrities or streamers' likenesses. Streamer clips use the real clip, never an AI version.
+- One look per post. Do not mix aerial and street in the same carousel.
+- Cover images keep the top 40% as calm sky or dark space for the headline. Stories keep the lower third quiet.
+
+### Using scene art in slides
+
+Add `"image": "path/to/file.png"` to a cover slide in the deck JSON. The renderer fills the slide with the image, darkens the top and bottom with `night` so the headline and handle read, and drops the in-house sun scene. Middle slides stay flat `night`.
+
+The ready-to-paste prompts are in `docs/ai-image-prompts.md`.
 
 ## Content fundamentals
 
@@ -39,11 +85,11 @@ The brand is a Vice City sunset seen from Leonida: a deep violet night, a hot pi
 - The recap slide lists every point in one view. It is the slide people screenshot, so it must read without the others.
 - Reels and stories are 1080x1920. Keep text between y=250 and y=1600, and inside the middle of the frame. Lower-third captions sit on a `night` strip, never directly on footage.
 - Corners come from the radius tokens: `radius-lg` on color blocks and cards, `radius-pill` on the profile photo circle.
-- No drop shadows, no blur effects, no stock photos of cars, guns or cityscapes.
+- In graphics (type, stripes, vector scenes) there are no drop shadows or blur effects. Photos come only from the scene art rules below, never from stock libraries, game screenshots or guns.
 
 ## Profile and channel
 
-- Profile photo: the gold striped sun over a pink and orange horizon with one palm silhouette, on `night`. No text, readable at 40px.
+- Profile photo: the Flat Deco sunset look as an emblem: the gold striped sun over a pink and orange horizon with one palm silhouette, on `night`. No text, readable at 40px.
 - Name field: the page name plus the niche in words people search, within 30 characters.
 - Bio: four lines. What it posts, how clips are credited, the fan-page notice, and where the full videos are.
 - Highlights: Settings, News, Clips, Tips, each with a sun-and-palm icon on `night`.

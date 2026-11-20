@@ -17,6 +17,13 @@ const esc = s => String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':
 
 const total = deck.slides.length;
 const sun = `<svg class="scene" viewBox="0 0 1080 420" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.sky}"/><stop offset="0.55" stop-color="${c.pink}"/><stop offset="1" stop-color="${c.orange}"/></linearGradient><clipPath id="sun"><circle cx="400" cy="250" r="130"/></clipPath><clipPath id="sk"><rect width="1080" height="290"/></clipPath></defs><rect width="1080" height="420" fill="url(#g)"/><g clip-path="url(#sk)"><circle cx="400" cy="250" r="130" fill="${c.gold}"/><g clip-path="url(#sun)" fill="${c.orange}"><rect x="260" y="212" width="280" height="8"/><rect x="260" y="236" width="280" height="12"/><rect x="260" y="264" width="280" height="16"/></g></g><rect y="290" width="1080" height="130" fill="${c.night}"/><g stroke="${c.cyan}" stroke-width="3" fill="none"><path d="M0 318H1080M0 352H1080M0 392H1080"/><path d="M540 290L0 420M540 290L180 420M540 290L360 420M540 290L540 420M540 290L720 420M540 290L900 420M540 290L1080 420"/></g><g stroke="${c.night}" stroke-width="10" stroke-linecap="round" fill="none"><path d="M900 290Q888 200 906 120"/><path d="M906 120Q850 80 810 130"/><path d="M906 120Q860 110 836 170"/><path d="M906 120Q952 80 1004 126"/><path d="M906 120Q950 114 984 176"/><path d="M906 120Q906 70 888 56"/></g></svg>`;
+function photo(s) {
+  if (!s.image) return '';
+  const f = path.resolve(s.image);
+  const mime = f.endsWith('.png') ? 'image/png' : 'image/jpeg';
+  const uri = `data:${mime};base64,` + fs.readFileSync(f).toString('base64');
+  return `<img class="photo" src="${uri}"><div class="shade"></div>`;
+}
 function body(s, i) {
   if (s.type === 'cover') return `<h1 class="cover">${esc(s.title)}</h1><p class="sub">${esc(s.sub)}</p>`;
   if (s.type === 'recap') return `<h2>${esc(s.head)}</h2><ol>${s.items.map(x => `<li>${esc(x)}</li>`).join('')}</ol>`;
@@ -39,10 +46,11 @@ h2.big{font-size:140px;line-height:140px}
 .menu{font-size:32px;line-height:40px;font-weight:700;color:${c.cyan}}
 ol{padding-left:56px;display:flex;flex-direction:column;gap:28px;font-size:44px;line-height:58px;font-weight:500}
 li::marker{color:${c.orange};font-weight:700}
+.photo{position:absolute;inset:0;width:1080px;height:1350px;object-fit:cover}.shade{position:absolute;inset:0;background:linear-gradient(0deg,${c.night}e6 0%,${c.night}00 16%),linear-gradient(180deg,${c.night}f2 0%,${c.night}d9 45%,${c.night}00 75%)}.shade~.in .sub{color:${c.ink}}.in{z-index:2}.stripes{z-index:3}.meta{z-index:3}
 .scene{position:absolute;left:0;bottom:110px;width:1080px;height:420px}.in.cover{inset:120px 120px 560px 120px;justify-content:flex-end}.stripes{position:absolute;left:0;right:0;top:0;height:40px}
 .meta{position:absolute;left:120px;right:120px;bottom:48px;display:flex;justify-content:space-between;font-size:32px;line-height:40px;font-weight:500;color:${c.muted}}
 .meta b{color:${c.cyan};font-weight:700}
-</style></head><body><svg class="stripes" viewBox="0 0 1080 40"><rect y="0" width="1080" height="8" fill="${c.pink}"/><rect y="16" width="1080" height="8" fill="${c.orange}"/><rect y="32" width="1080" height="8" fill="${c.gold}"/></svg><div class="in ${s.type}">${body(s, i)}</div>${s.type === 'cover' ? sun : ''}
+</style></head><body>${photo(s)}<svg class="stripes" viewBox="0 0 1080 40"><rect y="0" width="1080" height="8" fill="${c.pink}"/><rect y="16" width="1080" height="8" fill="${c.orange}"/><rect y="32" width="1080" height="8" fill="${c.gold}"/></svg><div class="in ${s.type}">${body(s, i)}</div>${s.type === 'cover' && !s.image ? sun : ''}
 <div class="meta"><b>${esc(deck.handle)}</b><span>${i + 1}/${total}</span></div></body></html>`;
 
 (async () => {
